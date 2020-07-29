@@ -4,15 +4,41 @@
 #include <string>
 #include <stdlib.h>
 
-void printOddOrEven(int number)
+bool check_number(std::string str) //this function checks if the string taken as a parameter is in fact a number or not
 {
-	if (number % 2 == 0)
+	for (int contor = 0; contor < str.length(); contor++)
 	{
-		printf("EVEN\n");
+		if (isdigit(str[contor]) == false)
+		{
+			return false;
+		}		
+		else
+		{
+			return true;
+		}
+	}
+}
+
+//I've been modified this function as you can see; now it takes a string as a parameter because I had to consider the case when the user
+//types non-numerical characters
+void printOddOrEven(std::string str) 
+{
+	if (check_number(str) == true)
+	{
+		int number;
+		number = std::stoi(str);
+		if (number % 2 == 0)
+		{
+			printf("EVEN\n");
+		}
+		else
+		{
+			printf("ODD\n");
+		}
 	}
 	else
 	{
-		printf("ODD\n");
+		printf("NAN");
 	}
 	
 }
@@ -21,7 +47,7 @@ void printOddOrEven(int number)
 int main(int argc, char *argv[])
 {
 
-	int number; 
+	//int number = -13; 
 	
 	// What is this program expected to do?
 	// - Shows whether an argument is an ODD or EVEN number.
@@ -45,21 +71,18 @@ int main(int argc, char *argv[])
 	// --------------- start
 
 	// Get the first argument
-	std::string argumentAsString = argv[1]; //de ce argv[1]?
+	std::string argumentAsString = argv[1]; 
 	const char* argumentAsCharArray = argumentAsString.c_str();
 
 	//number = argv[1]; // No
 	//should use atoi?
 	// or std::stoi?
 		
-	number = std::stoi(argv[1]); //transforma argv[1] din string in int
+	printOddOrEven(argv[1]);
 	
 	
-	printOddOrEven(number);
+	std::cout << argumentAsString << std::endl; // i think this should be removed ---> I've left this row for the user to see what number/character has been introduced
 	
-	
-
-	//std::cout << argumentAsString << std::endl; // i think this should be removed
 
 	// --------------- stop
 
