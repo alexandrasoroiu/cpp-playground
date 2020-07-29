@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 
 void printOddOrEven(int number)
 {
@@ -13,12 +14,15 @@ void printOddOrEven(int number)
 	{
 		printf("ODD\n");
 	}
+	
 }
+
 
 int main(int argc, char *argv[])
 {
-	int number = -13;
 
+	int number; 
+	
 	// What is this program expected to do?
 	// - Shows whether an argument is an ODD or EVEN number.
 	// How to launch it?
@@ -36,22 +40,30 @@ int main(int argc, char *argv[])
 		printf("No program arguments found.\n");
 	}
 	
-	// TODO(Gusti): i don't know why this doesn't work, but someone please FIX it.
+	// TODO(Gusti): i don't know why this doesn't work, but someone please FIX it. 
+
 	// --------------- start
 
 	// Get the first argument
-	std::string argumentAsString = argv[1];
+	std::string argumentAsString = argv[1]; //de ce argv[1]?
 	const char* argumentAsCharArray = argumentAsString.c_str();
 
 	//number = argv[1]; // No
 	//should use atoi?
 	// or std::stoi?
+		
+	number = std::stoi(argv[1]); //transforma argv[1] din string in int
+	
+	
+	printOddOrEven(number);
+	
+	
 
-	std::cout << argumentAsString << std::endl; // i think this should be removed
+	//std::cout << argumentAsString << std::endl; // i think this should be removed
 
 	// --------------- stop
 
-	printOddOrEven(number);
+	
 
 	return 0;
 }
