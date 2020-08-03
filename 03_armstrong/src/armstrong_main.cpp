@@ -71,6 +71,8 @@ int main(int argc, char *argv[])
 
 	const char* argumentAsCharArray = argumentAsString.c_str();
 
+	
+	// TODO: read number / cast to integer
 	if (isdigit(argumentAsString[0]))
 	{
 		readNumber = std::stoi(argv[1]);
@@ -80,9 +82,6 @@ int main(int argc, char *argv[])
 	{
 		printf("NAN");
 	}
-	
-	// TODO: read number / cast to integer
-    
 	
 
 	return 0;
