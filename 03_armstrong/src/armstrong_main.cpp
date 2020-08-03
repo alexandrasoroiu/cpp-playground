@@ -64,17 +64,26 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
+	
 	int readNumber = 0;
 	// Get the first argument
 	std::string argumentAsString = argv[1];
-	//const char* argumentAsCharArray = argumentAsString.c_str();
+
+	const char* argumentAsCharArray = argumentAsString.c_str();
+
+	if (isdigit(argumentAsString[0]))
+	{
+		readNumber = std::stoi(argv[1]);
+		printIsArmstrong(readNumber);
+	}
+	else
+	{
+		printf("NAN");
+	}
 	
 	// TODO: read number / cast to integer
-
-	readNumber = std::stoi(argv[1]);
-	
+    
 	
 
-	printIsArmstrong(readNumber);
 	return 0;
 }
