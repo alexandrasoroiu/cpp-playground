@@ -1,10 +1,16 @@
 // Includes
+#include <assert.h>
+
 
 // C++ system headers
+
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
+#include <fstream>
+
+
 
 // 3rd party libs headers
 #include <SimpleIni.h>
@@ -48,6 +54,51 @@ std::vector<Book> readBooksFromIniFile(const std::string& file_name)
 	std::vector<Book> results;
 	// TODO: BEGIN read the file -------------------------------------
 	
+	CSimpleIniA ini;
+	ini.SetUnicode();
+	const char* pv;
+
+	ini.LoadData("../../data/ermahgerd_berks.ini");
+
+	CSimpleIniA::TNamesDepend values;
+	//pv = ini.GetValue("book", "count");
+
+	CSimpleIniA::TNamesDepend::const_iterator it;
+	for (it = values.begin(); it != values.end(); ++it) {
+		printf("value = '%s'\n", it->pItem);
+	}
+
+	/*SI_Error rc = ini.LoadData(file_name);
+	if (rc < 0)
+	{
+		std::cout << "Eroare" << std::endl;
+	}
+	ASSERT_EQ(rc, SI_OK);*/
+
+
+	/*std::string line;
+	std::vector<std::string> vect;
+
+	Book myBook;
+
+	std::ifstream myFile(file_name);
+
+	if (myFile.is_open())
+	{
+		while (getline(myFile, line))
+		{
+			vect.emplace_back(line);
+		}
+
+		myFile.close();
+	}
+	else
+	{
+		std::cout << "File can't be open." << std::endl;
+	}*/
+
+	
+
 	// E.g. Book myBook;
 	//		// build the section name (E.g. book.1)
 	//		std::stringstream ss;
@@ -68,9 +119,10 @@ int main()
 	// Using the SimpleINI C++ Lib: https://github.com/brofield/simpleini
 
 	// Read the data
-	std::string input_data("PATH_TO_INI_FILE.ini");
+	std::string input_data("../../data/ermahgerd_berks.ini");
 	std::cout << "Reading the data from " << input_data << std::endl;
 	std::vector<Book> books_from_file = readBooksFromIniFile(input_data);
+
 
 	// Print the data
 	std::cout << "Here are all the books found in the data file..." << std::endl;
