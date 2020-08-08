@@ -1,6 +1,8 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
+#include <algorithm>
 
 /**
 	Define a simple matrix.
@@ -13,16 +15,35 @@ private:
 
 	// TODO: store the data
 	// hints: you can use std::string, std::vectors + string, char**, vector<vector<char>>, etc
+	std::vector<std::vector<std::string>> mat;
+
 public:
 	Matrix(size_t numColumnsX, size_t numLinesY)
 		// TODO: add functionality
 	{
 		// TODO: add functionality
+
+		this->column_count = numColumnsX;
+		this->line_count = numLinesY;
 	}
 
 	// Set an entire line
 	void setLine(size_t line_number, const std::string& data)
 	{
+
+		std::vector<std::string> vect;
+		
+			for (size_t k = 0; k < data.length(); k++)
+			{
+				std::stringstream ss;
+				ss << data[k];
+
+					vect.emplace_back(ss.str());
+			}
+		
+	
+		mat.emplace_back(vect);
+
 	}
 
 	//OPTIONAL
@@ -55,12 +76,37 @@ public:
 	void setCellXY(size_t x, size_t y, char cell_content)
 	{
 		// TODO: add functionality
+
+		for (size_t i = 0; i < mat.size(); i++)
+		{
+			std::vector<std::string> vect;
+
+			for (size_t j = 0; j < mat[i].size(); j++)
+			{
+				
+					std::stringstream ss;
+					ss << cell_content;
+					mat[y].at(x).clear();
+					mat[y].at(x).append(ss.str());	
+			}
+			
+		}
 	}
 
 	void print()
 	{
 		// print all lines and columns
 		// TODO: add functionality
+
+		for (size_t i = 0; i < mat.size(); i++)
+		{
+			for (size_t j = 0; j < mat[i].size(); j++)
+			{
+				std::cout << mat[i][j] << " ";
+					
+			}
+			std::cout << std::endl;
+		}
 	}
 };
 
@@ -68,6 +114,7 @@ int main()
 {
 	// Create a matrix with the width of 20 and height of 10.
 	Matrix matrix(20, 10);
+	
 
 	matrix.setLine(0, "X-----X----X-----XX-");
 	matrix.setLine(1, "--X-----------------");
@@ -79,6 +126,7 @@ int main()
 	matrix.setLine(7, "-------------------X");
 	matrix.setLine(8, "------------------X-");
 	matrix.setLine(9, "-----------------X--");
+	
 
 	matrix.print();
 	// Would print
@@ -95,6 +143,7 @@ X-----X----X-----XX-
 -----------------X--
 */
 	matrix.setCellXY(2, 1, '-');
+	std::cout << "\n" << std::endl;
 	matrix.print();
 	// Would print
 /*
@@ -110,7 +159,8 @@ X-----X----X-----XX-
 -----------------X--
 */
 
-	matrix.setCellXY(3, 7, 'O');
+	matrix.setCellXY(3, 7, '0');
+	std::cout << "\n" << std::endl;
 	matrix.print();
 /*
 X-----X----X-----XX-
