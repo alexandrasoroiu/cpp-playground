@@ -1,9 +1,10 @@
 ﻿#include <string.h>
 #include <iostream>
+#include <sstream>
 
 // Define the maximum length for the name to use.
 // Specify the length of characters in the content (Excluding the terminator).
-#define MAX_NAME_LEN 50
+#define MAX_NAME_LEN 20
 #define MAX_TITLE_LEN 50
 
 struct Author
@@ -61,6 +62,18 @@ struct Book
 void setBookName(Book& book, std::string name)
 {
 	strncpy(book.title, name.c_str(), MAX_TITLE_LEN);
+	
+	if (name.length() > MAX_TITLE_LEN)
+	{
+		for (int i = 0; i < name.length(); i++)
+		{
+			name[MAX_TITLE_LEN] = '\0';
+		}
+			
+		
+	}
+	
+	
 }
 
 int main()
