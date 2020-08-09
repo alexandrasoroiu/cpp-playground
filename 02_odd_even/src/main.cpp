@@ -4,14 +4,14 @@
 #include <string>
 #include <stdlib.h>
 
-bool check_number(std::string str) //this function checks if the string taken as a parameter is in fact a number or not
+bool check_isDigit(std::string str)
 {
-	for (int contor = 0; contor < str.length(); contor++)
+	for (int i = 1; i < str.length(); i++)
 	{
-		if (isdigit(str[contor]) == false)
+		if (isdigit(str[i]) == false)
 		{
 			return false;
-		}		
+		}
 		else
 		{
 			return true;
@@ -19,11 +19,46 @@ bool check_number(std::string str) //this function checks if the string taken as
 	}
 }
 
+bool check_negNumber(std::string str)
+{
+	char s = '-';
+	for (int contor = 0; contor < str.length(); contor++)
+	{
+		if (str[0] == s && check_isDigit(str) == true)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+}
+
+bool check_pozNumber(std::string str)
+{
+	if (check_negNumber(str) == false)
+	{
+		for (int i = 0; i < str.length(); i++)
+		{
+			if (isdigit(str[i]) == false)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+	}
+}
+
+
 //I've been modified this function as you can see; now it takes a string as a parameter because I had to consider the case when the user
 //types non-numerical characters
 void printOddOrEven(std::string str) 
 {
-	if (check_number(str) == true)
+	if (check_pozNumber(str) == true || check_negNumber(str) == true)
 	{
 		int number;
 		number = std::stoi(str);
