@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 
-const int size = 50;
+const int size = 20;
 
 //describe the coorinates of the cell and if is alive
 class Point
@@ -19,8 +19,7 @@ public:
 	}
 };
 
-//to store points
-std::vector<Point> changedState;
+
 
 //describe a cell (alive or not)
 class Cell
@@ -40,8 +39,10 @@ class Grid
 public:
 	Cell cells[20][20];
 
+	
+
 	//search for all neighbours near the cell
-	int getNeighbours(int x, int y)
+	void getNeighbours(int x, int y)
 	{
 		int countNeigh = 0;
 
@@ -77,11 +78,15 @@ public:
 		{
 			countNeigh++;
 		}
+
+	
 	}
 
 	void updateCell()
 	{
 		int space[20][20];
+		//to store points
+		std::vector<Point> changedState;
 
 		//looks for neighbours; store in the vector of points all the updated cells
 		for (int y = 0; y < size; y++)
@@ -122,11 +127,11 @@ public:
 			{
 				if (cells[i][j].alive == 1)
 				{
-					std::cout << "*" << std::endl;
+					std::cout << "*";
 				}
 				else
 				{
-					std::cout << " " << std::endl;
+					std::cout << ".";
 				}
 			}
 			std::cout << "\n" << std::endl;
@@ -136,12 +141,72 @@ public:
 };
 
 
-
 int main()
 {
 	Grid myGrid;
+	myGrid.cells[6][9].alive = 1;
+	myGrid.cells[6][10].alive = 1;
+	myGrid.cells[1][9].alive = 1;
+	myGrid.cells[5][14].alive = 1;
+	myGrid.cells[6][3].alive = 1;
+	myGrid.cells[2][9].alive = 1;
+	myGrid.cells[6][11].alive = 1;
+
+	myGrid.cells[7][5].alive = 1;
+	myGrid.cells[7][6].alive = 1;
+	myGrid.cells[8][5].alive = 1;
+	myGrid.cells[8][6].alive = 1;
+	myGrid.cells[8][8].alive = 1;
+	myGrid.cells[10][4].alive = 1;
+	myGrid.cells[10][5].alive = 1;
+	myGrid.cells[10][7].alive = 1;
+	myGrid.cells[11][4].alive = 1;
+	myGrid.cells[11][7].alive = 1;
+	myGrid.cells[12][5].alive = 1;
+	myGrid.cells[12][7].alive = 1;
+	myGrid.cells[13][2].alive = 1;
+	myGrid.cells[13][3].alive = 1;
+	myGrid.cells[13][6].alive = 1;
+	myGrid.cells[13][7].alive = 1;
+	myGrid.cells[14][4].alive = 1;
+	myGrid.cells[14][5].alive = 1;
+	myGrid.cells[14][8].alive = 1;
+	myGrid.cells[15][5].alive = 1;
+	myGrid.cells[15][6].alive = 1;
+	myGrid.cells[15][7].alive = 1;
+	myGrid.cells[16][5].alive = 1;
+	myGrid.cells[16][6].alive = 1;
+	myGrid.cells[16][7].alive = 1;
 	
-	char grid[20][20];
+		myGrid.Print();
+
+		/*while (true)
+		{
+			for (int i = 1; i < size; i++)
+			{
+				for (int j = 1; j < size; j++)
+				{
+					myGrid.getNeighbours(i, j);
+				}
+			}
+
+			myGrid.updateCell();
+
+			system("CLS");
+
+			myGrid.Print();
+		}*/
+		
+
+		
+	
+	
+	
+	
+
+
+
+
 
 
 
