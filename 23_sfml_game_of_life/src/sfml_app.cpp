@@ -28,8 +28,8 @@ std::string getMessageForActiveStatus(bool active)
 
 void SfmlApp::init()
 {
-	this->living_cell_color_ = sf::Color(40, 160, 20);
-	this->dead_cell_color_ = sf::Color(25, 23, 21);
+	this->living_cell_color_ = sf::Color::Red;
+	this->dead_cell_color_ = sf::Color::Black;
 
 	if (font_.loadFromFile("../../data/OpenSans-Regular.ttf"))
 	{
